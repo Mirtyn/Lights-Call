@@ -7,9 +7,8 @@ public class GetObjectMouseClicked : MonoBehaviour
     GameObject player;
     NavMeshAgent agent;
     [SerializeField] LayerMask Interacteable;
-    Coroutine storedChestClickedCourotine;
     bool clickedChest = false;
-   
+    GameObject hitObject;
 
     void Start()
     {
@@ -25,45 +24,37 @@ public class GetObjectMouseClicked : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, float.MaxValue, Interacteable))
             {
-                agent.destination = hit.point;
-                
                 switch (hit.transform.tag)
                 {
                     case "Ground":
-                        agent.destination = hit.point;
-                        if (clickedChest == true)
-                        {
-                            StopCoroutine(storedChestClickedCourotine);
-                        }
                         clickedChest = false;
+                        agent.destination = hit.point;
+                        
                         break;
                     case "InteracteableTrigger":
-                        agent.destination = hit.point;
-                        GameObject hitObject = hit.collider.gameObject;
-                        storedChestClickedCourotine = StartCoroutine(ChestClicked(hitObject));
                         clickedChest = true;
+                        hitObject = hit.collider.gameObject;
+                        agent.destination = hit.point;
+
                         break;
                     default:
-                        if (clickedChest == true)
-                        {
-                            StopCoroutine(storedChestClickedCourotine);
-                        }
                         clickedChest = false;
+
                         break;
                 }
             }
         }
+
+        ChestClicked();
     }
 
-    public IEnumerator ChestClicked(GameObject hitObject)
+    public void ChestClicked()
     {
         while (clickedChest == true)
         {
             if (Vector3.Distance(player.transform.position, hitObject.transform.position) <= 3)
             {
-                Debug.Log("Chest Opened");
-                StopCoroutine(storedChestClickedCourotine);
-                yield return null;
+                hitObject.GetComponent<PressTriggerScript>().FindTriggerType();
             }
         }
     }
