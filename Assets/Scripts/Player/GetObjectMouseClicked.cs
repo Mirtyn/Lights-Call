@@ -9,6 +9,7 @@ public class GetObjectMouseClicked : MonoBehaviour
     [SerializeField] LayerMask Interacteable;
     Coroutine storedChestClickedCourotine;
     bool clickedChest = false;
+   
 
     void Start()
     {
