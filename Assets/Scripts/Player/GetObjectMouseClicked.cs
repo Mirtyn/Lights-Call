@@ -16,7 +16,7 @@ public class GetObjectMouseClicked : MonoBehaviour
         agent = player.GetComponent<NavMeshAgent>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
