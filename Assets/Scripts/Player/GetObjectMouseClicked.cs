@@ -16,7 +16,7 @@ public class GetObjectMouseClicked : MonoBehaviour
         agent = player.GetComponent<NavMeshAgent>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -28,6 +28,7 @@ public class GetObjectMouseClicked : MonoBehaviour
                 {
                     case "Ground":
                         clickedChest = false;
+                        hitObject = hit.collider.gameObject;
                         agent.destination = hit.point;
                         
                         break;
@@ -39,6 +40,7 @@ public class GetObjectMouseClicked : MonoBehaviour
                         break;
                     default:
                         clickedChest = false;
+                        hitObject = hit.collider.gameObject;
 
                         break;
                 }
@@ -50,7 +52,7 @@ public class GetObjectMouseClicked : MonoBehaviour
 
     public void ChestClicked()
     {
-        while (clickedChest == true)
+        if (hitObject != null)
         {
             if (Vector3.Distance(player.transform.position, hitObject.transform.position) <= 3)
             {
