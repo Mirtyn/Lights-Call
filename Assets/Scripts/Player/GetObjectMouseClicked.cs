@@ -56,7 +56,12 @@ public class GetObjectMouseClicked : MonoBehaviour
         {
             if (Vector3.Distance(player.transform.position, hitObject.transform.position) <= 3)
             {
-                hitObject.GetComponent<PressTriggerScript>().FindTriggerType();
+                var c = hitObject.GetComponent<PressTriggerScript>();
+
+                if(c != null)
+                {
+                    hitObject.GetComponent<PressTriggerScript>().FindTriggerType();
+                }
             }
         }
     }
