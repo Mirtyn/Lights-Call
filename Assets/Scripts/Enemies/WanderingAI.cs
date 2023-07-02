@@ -27,7 +27,7 @@ internal class WanderingAI : MonoBehaviour
         timer = wanderTimer;
     }
 
-    void Update()
+    public void Wander()
     {
         Debug.DrawLine(gameObject.transform.position, agent.destination, Color.red);
         timer += Time.deltaTime;
@@ -44,13 +44,13 @@ internal class WanderingAI : MonoBehaviour
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
+        Vector2 randDirection = Random.insideUnitCircle * dist;
 
-        randDirection += origin;
+        Vector3 r = origin + new Vector3(randDirection.x, 0, randDirection.y);
 
         NavMeshHit navHit;
 
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        NavMesh.SamplePosition(r, out navHit, dist, layermask);
 
         return navHit.position;
     }
