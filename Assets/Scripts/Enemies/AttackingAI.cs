@@ -6,18 +6,13 @@ internal class AttackingAI : MonoBehaviour
 {
     GameObject player;
 
-    public float wanderRadius;
-    public float minWanderRadius = 1;
-    public float maxWanderRadius = 8;
-
-    public float wanderTimer;
-    public float minWanderTimer = 2;
-    public float maxWanderTimer = 5;
+    //public float AttackDistance = 1f;
+    public float Refresh = 0.1f;
 
     // -1 = every layer
-    [SerializeField] int LayerMaskInteracteable = -1;
+    //[SerializeField] int LayerMaskInteracteable = -1;
 
-    Transform target;
+    //Transform target;
     NavMeshAgent agent;
     float timer;
 
@@ -26,7 +21,7 @@ internal class AttackingAI : MonoBehaviour
     {
         player = GameObject.FindWithTag("MyPlayer");
         agent = GetComponent<NavMeshAgent>();
-        timer = wanderTimer;
+        timer = Refresh;
     }
 
     public void Attack()
@@ -34,26 +29,27 @@ internal class AttackingAI : MonoBehaviour
         Debug.DrawLine(gameObject.transform.position, agent.destination, Color.red);
         timer += Time.deltaTime;
 
-        if (timer >= wanderTimer)
-        {
-            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, LayerMaskInteracteable);
-            agent.SetDestination(newPos);
-            timer = 0;
-            wanderTimer = Random.Range(minWanderTimer, maxWanderTimer);
-            wanderRadius = Random.Range(minWanderRadius, maxWanderRadius);
-        }
+        agent.SetDestination(player.transform.position);
+        timer = 0;
+
+        //if (timer >= Refresh)
+        //{
+        //    //Vector3 newPos = CalculatePosForAttack(player.transform.position, AttackDistance, LayerMaskInteracteable);
+        //    agent.SetDestination(player.transform.position);
+        //    timer = 0;
+        //}
     }
 
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
-    {
-        Vector2 randDirection = Random.insideUnitCircle * dist;
+    //public static Vector3 CalculatePosForAttack(Vector3 origin, float dist, int layermask)
+    //{
+    //    Vector2 randDirection = Random.insideUnitCircle * dist;
 
-        Vector3 r = origin + new Vector3(randDirection.x, 0, randDirection.y);
+    //    Vector3 r = origin + new Vector3(randDirection.x, 0, randDirection.y);
 
-        NavMeshHit navHit;
+    //    NavMeshHit navHit;
 
-        NavMesh.SamplePosition(r, out navHit, dist, layermask);
+    //    NavMesh.SamplePosition(r, out navHit, dist, layermask);
 
-        return navHit.position;
-    }
+    //    return navHit.position;
+    //}
 }

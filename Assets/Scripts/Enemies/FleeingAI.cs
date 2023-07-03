@@ -5,13 +5,13 @@ using Unity.VisualScripting;
 
 internal class FleeingAI : MonoBehaviour
 {
-    public float wanderRadius;
-    public float minWanderRadius = 8;
-    public float maxWanderRadius = 12;
+    public float FleeRadius;
+    public float MinFleeRadius = 8;
+    public float MaxFleeRadius = 12;
 
-    public float wanderTimer;
-    public float minWanderTimer = 0.1f;
-    public float maxWanderTimer = 0.8f;
+    public float FleeTimer;
+    public float MinFleeTimer = 0.1f;
+    public float MaxFleeTimer = 0.8f;
 
     // -1 = every layer
     [SerializeField] int LayerMaskInteracteable = -1;
@@ -24,7 +24,7 @@ internal class FleeingAI : MonoBehaviour
     void OnEnable()
     {
         agent = GetComponent<NavMeshAgent>();
-        timer = wanderTimer;
+        timer = FleeTimer;
     }
 
     public void RunAway()
@@ -32,13 +32,13 @@ internal class FleeingAI : MonoBehaviour
         Debug.DrawLine(gameObject.transform.position, agent.destination, Color.magenta);
         timer += Time.deltaTime;
 
-        if (timer >= wanderTimer)
+        if (timer >= FleeTimer)
         {
-            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, LayerMaskInteracteable);
+            Vector3 newPos = RandomNavSphere(transform.position, FleeRadius, LayerMaskInteracteable);
             agent.SetDestination(newPos);
             timer = 0;
-            wanderTimer = Random.Range(minWanderTimer, maxWanderTimer);
-            wanderRadius = Random.Range(minWanderRadius, maxWanderRadius);
+            FleeTimer = Random.Range(MinFleeTimer, MaxFleeTimer);
+            FleeRadius = Random.Range(MinFleeRadius, MaxFleeRadius);
         }
     }
 

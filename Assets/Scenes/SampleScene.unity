@@ -845,10 +845,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1836189020941514851, guid: 561f999a1ad8ac04f992614d1ce6752e, type: 3}
-      propertyPath: m_Radius
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: 1836189021704448833, guid: 561f999a1ad8ac04f992614d1ce6752e, type: 3}
       propertyPath: m_Name
       value: PlayerReq
@@ -916,7 +912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306512935184534486, guid: c45ae3c1127d0144e898ed9ee4d2b750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.97
+      value: 6.45
       objectReference: {fileID: 0}
     - target: {fileID: 8306512935184534486, guid: c45ae3c1127d0144e898ed9ee4d2b750, type: 3}
       propertyPath: m_LocalPosition.y
@@ -924,7 +920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306512935184534486, guid: c45ae3c1127d0144e898ed9ee4d2b750, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.35
+      value: -4.95
       objectReference: {fileID: 0}
     - target: {fileID: 8306512935184534486, guid: c45ae3c1127d0144e898ed9ee4d2b750, type: 3}
       propertyPath: m_LocalRotation.w
