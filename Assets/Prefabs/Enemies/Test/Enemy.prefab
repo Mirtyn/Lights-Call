@@ -286,12 +286,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runDistance: 0
-  minRunDistance: 7
-  maxRunDistance: 15
+  minRunDistance: 8
+  maxRunDistance: 12
   runTime: 0
-  minRunTime: 0.5
-  maxRunTime: 2.5
+  minRunTime: 0.1
+  maxRunTime: 0.8
   LayerMaskInteracteable: -1
+  directionY: 0
 --- !u!114 &2121171414
 MonoBehaviour:
   m_ObjectHideFlags: 0

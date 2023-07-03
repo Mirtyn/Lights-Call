@@ -29,7 +29,7 @@ internal class WanderingAI : MonoBehaviour
 
     public void Wander()
     {
-        Debug.DrawLine(gameObject.transform.position, agent.destination, Color.red);
+        Debug.DrawLine(gameObject.transform.position, agent.destination, Color.blue);
         timer += Time.deltaTime;
 
         if (timer >= wanderTimer)

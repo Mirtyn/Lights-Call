@@ -1,17 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-using Unity.VisualScripting;
 
-internal class FleeingAI : MonoBehaviour
+internal class AttackingAI : MonoBehaviour
 {
+    GameObject player;
+
     public float wanderRadius;
-    public float minWanderRadius = 8;
-    public float maxWanderRadius = 12;
+    public float minWanderRadius = 1;
+    public float maxWanderRadius = 8;
 
     public float wanderTimer;
-    public float minWanderTimer = 0.1f;
-    public float maxWanderTimer = 0.8f;
+    public float minWanderTimer = 2;
+    public float maxWanderTimer = 5;
 
     // -1 = every layer
     [SerializeField] int LayerMaskInteracteable = -1;
@@ -23,13 +24,14 @@ internal class FleeingAI : MonoBehaviour
     // Use this for initialization
     void OnEnable()
     {
+        player = GameObject.FindWithTag("MyPlayer");
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
     }
 
-    public void RunAway()
+    public void Attack()
     {
-        Debug.DrawLine(gameObject.transform.position, agent.destination, Color.magenta);
+        Debug.DrawLine(gameObject.transform.position, agent.destination, Color.red);
         timer += Time.deltaTime;
 
         if (timer >= wanderTimer)
